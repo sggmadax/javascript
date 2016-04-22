@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<HTML lang='utf-8'>
+	<HEAD>
+		<TITLE>xg1</TITLE>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/mycss.css">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jXG.js"></script>
+		<!-- 
+		<script type="text/javascript" src="xg1.js"></script>
+		-->
+		
+	</HEAD>
+
+	<BODY>
+		<h2>closure</h2>
+		<DIV class="catagory" id="packages"><h2>closure</h2></DIV>
+
+			
+		<DIV>
+		following 2 hyperlink invoke the same function originated from the same object jXG
+		<p> 作用等同于 來源自統一個物件的兩個 instance ； 各有各的 runtime scope, 因此 其 counter 各自獨立 
+		<p> 這是藉由 closure 功能 達到的效果；
+		
+		</DIV>			
+			
+			
+			<DIV id="button1">closure function 1 : <a href="javascript:call_f1()">click!</a> 
+				<span id="counter1">0</span></DIV>
+			<DIV id="button2">closure function 2 : <a href="javascript:call_f2()">click!</a> 
+				<span id="counter2">0</span></DIV>
+			<hr>
+		<DIV>
+			如果不用 closure， 而直接 參照 jXG的 一個方法， 其效果相當于 呼叫一個 static 方法
+			<br> 不管有多少對象來呼叫這個方法， 大家共享 runtime scope； 
+			<br> 因此 counter 衹有一個版本。
+		</DIV>					
+			<DIV id="button3">Non-closure function 3 : <a href="javascript:call_f3()"> click! </a>
+			<span id="counter3"> 0 </span></DIV>
+			
+			</DIV>
+			<DIV id="button4">Non-closure function 4 : <a href="javascript:call_f4()"> click! </a> 
+			<span id="counter4"> 0 </span></DIV>
+			</DIV>
+			
+			</DIV>
+			<DIV id="button5">direct function call 5 : <a href="javascript:call_f5()"> click! </a> 
+			<span id="counter5"> 0 </span></DIV>
+			</DIV>
+			
+			
+		<script type="text/javascript">
+			var f1 , f2, f3,f4;
+			$(document).ready(function(){
+			 f1 = jXG.getCounterFunction();
+			 f2 = jXG.getCounterFunction();
+			 f3 = jXG.addOne1();
+			 f4 = jXG.addOne1();			
+			}); 
+					
+			function call_f1() {
+				console.log("f1");
+				$("#counter1").text(f1());
+			}
+			function call_f2() {
+				console.log("f2");
+				$("#counter2").text(f2());
+			}			
+			
+			function call_f3() {
+				console.log("f3-addOne0");
+				$("#counter3").text(f3());
+			}	
+			function call_f4() {
+				console.log("f4-addOne0");
+				$("#counter4").text(f4());
+			}	
+			
+			function call_f5() {
+				var x = jXG.getCounter();
+				console.log("f5:" + x);
+				$("#counter5").text(x);
+			}				
+		</script>
+	</BODY>
+	
+</HTML>

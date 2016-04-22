@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<HTML lang='utf-8'>
+	<HEAD>
+		<TITLE>xg1</TITLE>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/mycss.css">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jXG.js"></script>
+		<!-- 
+		<script type="text/javascript" src="xg1.js"></script>
+		-->
+		
+	</HEAD>
+
+	<BODY>
+		<h2>THIS IS XG 1 with h2</h2>
+			<DIV class="catagory" id="packages"><h2>THIS IS XG 1 ; HIt F12 to view the counter</h2></DIV>
+
+			
+			<DIV>
+			how to a reference a function ?
+			how to invoke functions ?
+			how many different function type are there ?
+			
+			1. normal , delcared function : function 本身 以 function 的形態 存在。
+			
+			2. FE : function expression ： 一段function 的定義， 可以 具名 也 可以匿名 定義
+					使用方式：
+					1. 作爲 呼叫其他函數時帶入的引數值： 這表示被呼叫的函數 原本就有一個 函數形態的參數 
+						ex: hostf() 是被呼叫的函數，它的定義如下：
+							paraf 是參數，它會在 hostf()内部invoke
+							
+							function hostf (paraf) 
+							{
+								paraf();
+							}
+							
+							
+							//to invoke hostf with a FE
+							hostf ( (function() {alert("I am functionA") ;} );
+
+							
+					2. 作爲 一個函數的回傳值： 
+					
+						function foo() {
+						
+							return (function () {
+									alert("peace!");
+								};
+						}
+						
+						var bar ; 
+						bar = foo(); // now bar refers to a fuction
+						
+						bar() ; // alert "peace!" 
+						
+						
+						
+						
+						
+					
+				
+			IIEF , Immediately Invoked Function 
+
+
+</DIV>			
+			
+			
+			<DIV id="button1">closure function 1 : <a href="javascript:call_f1()">click!</a> </DIV>
+			<DIV id="button2">closure function 2 : <a href="javascript:call_f2()">click!</a> </DIV>
+			
+			
+			
+			<DIV id="button1">click to <a href="javascript:getCounter()">Count</a> HIt F12 to view the counter</DIV>
+			<DIV id="button2">click to <a href="javascript:addCounter()">Add</a> HIt F12 to view the counter</DIV>
+			
+<!--			<DIV class="cat100" id="id100"><h2>Today is <script scr=> </script></h2></DIV>
+	-->	
+	
+		<script type="text/javascript">
+		//var c;
+		var f1 , f2;
+			$(document).ready(function(){
+/*
+			$("#button1").click(function (){			
+		window.open("http://localhost/devwork/html/xg2.html", "xgbom")
+	});
+	*/
+	
+			//
+	
+		/* work area :
+			console.dir(window);
+			
+			// Math 和 String 的 本質不同
+			console.dir(Math);
+			console.dir(String.prototype);
+			console.log("console salut");
+			console.log(jXG.name);
+			console.log(jXG.getXGName());
+			console.log(jXG.getXGDate());
+			var n = 64;
+			console.log("cube root of " + n + " = " +  Math.cbrt(n));			
+			console.log("cube root of " + n + " = " + window.Math.cbrt(n));
+			*/
+			// not work area
+			//console.log("cube root of 256 = " +  object.Math.cbrt(64)); // not work
+			//console.log("cube root of 256 = " +  Object.Math.cbrt(64)); // not work 
+			//c = jXG.addOne();
+			 f1 = jXG.getCounterFunction();
+			 f2 = jXG.getCounterFunction();
+			
+			}); 
+			
+			function getCounter() {
+			//	c();
+				console.log( jXG.counter);
+			}
+			
+			function addCounter() {
+				jXG.counter ++;
+				console.log( jXG.counter);
+			}
+			
+			function call_f1() {
+			//	alert("d");
+			console.log("f1");
+				f1();
+				
+				
+			}
+			function call_f2() {
+			//	alert("d");
+			console.log("f2");
+			f2();
+				
+				
+			}			
+			
+			
+		</script>
+	</BODY>
+	
+</HTML>
